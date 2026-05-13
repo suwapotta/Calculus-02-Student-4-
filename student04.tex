@@ -1,0 +1,59 @@
+\documentclass[twoside, english]{hcmut-report}
+
+%%% Optional packages
+% \usepackage{}
+
+%%% Configurations
+\setstretch{1.2}
+\setlength{\arraycolsep}{15pt}
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
+
+%%% Custom commands
+\newcommand{\inputfigure}[3][0.95]{
+\begin{figure}[htbp]%
+  \begin{center}%
+    \includegraphics[width=#1\textwidth]{figures/#2}%
+  \end{center}%
+  \caption{#3}%
+\end{figure}%
+}
+
+%%% Rename sections
+% \AtBeginDocument{\renewcommand*{\contentsname}{Contents}}
+% \AtBeginDocument{\renewcommand*{\refname}{References}}
+% \AtBeginDocument{\renewcommand*{\bibname}{References}}
+
+%%% MAIN DOCUMENT
+\begin{document}
+% \coverpage
+
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+
+\tableofcontents
+% \listoffigures
+% \listoftables
+% \lstlistoflistings{}
+\clearpage
+
+\raggedbottom
+
+\input{chapters/question01.tex}
+\input{chapters/question02.tex}
+\input{chapters/question03.tex}
+\input{chapters/question04.tex}
+\input{chapters/question05.tex}
+
+% \begin{noindent}
+% \begingroup
+%   \raggedright
+%     \bibliographystyle{apacite}
+%     \bibliography{refs/refs.bib}
+%   \nocite{*}
+% \endgroup
+% \end{noindent}
+
+% \clearpage
+% \appendix
+
+\end{document}

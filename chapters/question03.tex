@@ -1,0 +1,30 @@
+\section{Tendon Stress Distribution in a Cylindrical Limb Segment}
+
+\subsection{Problem Statement}
+A cylindrical limb segment in a musculoskeletal model has a radius of \textbf{5.5 units} and a height of \textbf{9.5 units}. The \textbf{tendon stress density} at a point $(x,y,z)$ within the segment is defined by:
+$$P(x, y, z) = 354.62x^2 + 354.62y^2$$
+Compute the total tendon stress in the segment using \textbf{cylindrical coordinates}.
+
+\subsection{Detailed Solution}
+\textit{ Sol. }
+\begin{equation*}
+	\begin{aligned}
+		P(r, \theta, z) & = 354.62r^2                                                                                                              \\
+		dV              & = r \, dr \, d\theta \, dz                                                                                               \\
+		S               & = \int_{0}^{9.5} \int_{0}^{2\pi} \int_{0}^{5.5} (354.62r^2)(r) \, dr \, d\theta \, dz                                    \\
+		                & = 354.62 \left( \int_{0}^{5.5} r^3 \, dr \right) \left( \int_{0}^{2\pi} d\theta \right) \left( \int_{0}^{9.5} dz \right) \\
+		                & = 354.62 \left[ \frac{r^4}{4} \right]_{0}^{5.5} \left[ \theta \right]_{0}^{2\pi} \left[ z \right]_{0}^{9.5}              \\
+		                & = 354.62 \left( 228.765625 \right) \left( 2\pi \right) \left( 9.5 \right)                                                \\
+		                & = 1,540,798.1171875\pi                                                                                                   \\
+		                & \approx \boxed{4,842,364.3742}
+	\end{aligned}
+\end{equation*}
+
+\subsection{Matlab Implementation}
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{figures/result03.png}
+	\end{center}
+	\caption{Student 04 - Matlab Screenshot}
+	\label{stu4_ques3}
+\end{figure}

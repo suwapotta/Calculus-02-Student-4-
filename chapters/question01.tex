@@ -1,0 +1,31 @@
+\section{Muscle Force Density in a 3D Musculoskeletal Region}
+
+\subsection{Problem Statement}
+A biomechanics researcher analyzes a 3D musculoskeletal region where the
+\textbf{muscle force density} is given by:
+$$g(x,y,z) = 652.75x^{4}y^{8}z^{7}$$
+over the region bounded by: $0 \le x \le 5$, $0 \le y \le 6$, $0 \le z \le 3$.
+Compute the total muscle force distributed in the region.
+
+\subsection{Detailed Solution}
+\textit{ Sol. }
+
+\begin{equation*}
+	\begin{aligned}
+		F & = \iiint_V g(x,y,z) \, dV                                                                                                  \\
+		  & = \int_{0}^{3} \int_{0}^{6} \int_{0}^{5} 652.75x^{4}y^{8}z^{7} \, dx \, dy \, dz                                           \\
+		  & = 652.75 \left( \int_{0}^{5} x^4 \, dx \right) \left( \int_{0}^{6} y^8 \, dy \right) \left( \int_{0}^{3} z^7 \, dz \right) \\
+		  & = 652.75 \left[ \frac{x^5}{5} \right]_{0}^{5} \left[ \frac{y^9}{9} \right]_{0}^{6} \left[ \frac{z^8}{8} \right]_{0}^{3}    \\
+		  & = 652.75 \left( 625 \right) \left( 1,119,744 \right) \left( 820.125 \right)                                                \\
+		  & \approx \boxed{374,649,962,215,039.5000}
+	\end{aligned}
+\end{equation*}
+
+\subsection{Matlab Implementation}
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{figures/result01.png}
+	\end{center}
+	\caption{Student 04 - Matlab Screenshot}
+	\label{stu4_ques1}
+\end{figure}

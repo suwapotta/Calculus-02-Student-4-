@@ -1,0 +1,39 @@
+\section{Force Cost Evaluation in a Tetrahedral Musculoskeletal System}
+
+\subsection{Problem Statement}
+The following triple integral represents the \textbf{force cost function} in a bounded musculoskeletal system with quadratic variation along the vertical axis:
+$$\iiint_{E}(480.92x+592.03y+z^{2})dV$$
+where $E$ is the solid tetrahedron bounded by: $x=0.1$, $y=0.3$, $z=0.4$, $x+y+z=5$. Evaluate the \textbf{total force cost} within the system.
+
+\subsection{Detailed Solution}
+\textit{ Sol. }
+\begin{equation*}
+	\begin{aligned}
+		C & = \iiint_{E}(480.92x+592.03y+z^{2}) \, dV                                                                           \\
+		  & = \int_{0.1}^{4.3} \int_{0.3}^{4.6-x} \int_{0.4}^{5-x-y} (480.92x + 592.03y + z^2) \, dz \, dy \, dx                \\
+		  & = \int_{0.1}^{4.3} \int_{0.3}^{4.6-x} \left[ (480.92x + 592.03y)z + \frac{z^3}{3} \right]_{0.4}^{5-x-y} \, dy \, dx \\
+		  & = \int_{0.1}^{4.3} \int_{0.3}^{4.6-x} \Bigg( (480.92x + 592.03y)(4.6-x-y)                                           \\
+		  & \qquad\qquad + \frac{(5-x-y)^3}{3} - \frac{0.064}{3} \Bigg) \, dy \, dx                                             \\
+		  & = \int_{0.1}^{4.3} \Bigg[ 480.92x \left((4.6-x)y - \frac{y^2}{2}\right)                                             \\
+		  & \qquad\qquad + 592.03 \left( \frac{(4.6-x)y^2}{2} - \frac{y^3}{3} \right)                                           \\
+		  & \qquad\qquad - \frac{(5-x-y)^4}{12} - \frac{0.064y}{3} \Bigg]_{y=0.3}^{y=4.6-x} \, dx                               \\
+		  & = \int_{0.1}^{4.3} \Bigg( \Big[ \frac{480.92x}{2}(4.6-x)^2 + \frac{592.03}{6}(4.6-x)^3                              \\
+		  & \qquad\qquad - \frac{0.4^4}{12} - \frac{0.064(4.6-x)}{3} \Big]                                                      \\
+		  & \qquad\qquad - \Big[ 480.92x \left( 0.3(4.6-x) - \frac{0.3^2}{2} \right)                                            \\
+		  & \qquad\qquad + 592.03 \left( \frac{0.3^2(4.6-x)}{2} - \frac{0.3^3}{3} \right)                                       \\
+		  & \qquad\qquad - \frac{(4.7-x)^4}{12} - \frac{0.064(0.3)}{3} \Big] \Bigg) \, dx                                       \\
+		  & = \int_{0.1}^{4.3} \Bigg( 240.46x(4.6-x)^2 + \frac{592.03}{6}(4.6-x)^3 + \frac{(4.7-x)^4}{12}                       \\
+		  & \qquad\qquad + 144.276x^2 - 615.365x - 117.217 \Bigg) \, dx                                                         \\
+		  & \ \vdots                                                                                                            \\
+		  & \approx \boxed{16,732.3117}
+	\end{aligned}
+\end{equation*}
+
+\subsection{Matlab Implementation}
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{figures/result05.png}
+	\end{center}
+	\caption{Student 04 - Matlab Screenshot}
+	\label{stu4_ques5}
+\end{figure}

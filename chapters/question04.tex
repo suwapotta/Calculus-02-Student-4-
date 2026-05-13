@@ -1,0 +1,51 @@
+\section{Musculoskeletal Force Output}
+
+\subsection{Problem Statement}
+In a multivariable musculoskeletal model, the \textbf{force output density function} for a limb system is:
+$$P(x, y, z) = 901.17xyz$$
+where $x, y, z$ represent normalized inputs for muscle contraction, joint pressure, and bone displacement. A transformation to new coordinates is defined by:
+$$x=\frac{u+3v+w}{7}, \quad y=\frac{u-v+w}{7}, \quad z=\frac{u-v-3w}{7}$$
+Compute the \textbf{total musculoskeletal force output} over the region:
+$0 \le u \le 3$, $-1 \le v \le 6$, $-1 \le w \le 4$, using the \textbf{Jacobian transform}.
+
+\subsection{Detailed Solution}
+\textit{ Sol. }
+\begin{equation*}
+	\begin{aligned}
+		J & = \frac{\partial(x,y,z)}{\partial(u,v,w)} = \begin{vmatrix} 1/7 & 3/7 & 1/7 \\ 1/7 & -1/7 & 1/7 \\ 1/7 & -1/7 & -3/7 \end{vmatrix} \\
+		  & = \left(\frac{1}{7}\right)^3 \begin{vmatrix} 1 & 3 & 1 \\ 1 & -1 & 1 \\ 1 & -1 & -3 \end{vmatrix}                                  \\
+		  & = \frac{1}{343} \Big[ 1((-1)(-3) - (1)(-1)) - 3((1)(-3) - (1)(1)) + 1((1)(-1) - (-1)(1)) \Big]                                     \\
+		  & = \frac{1}{343} \Big[ 1(3 + 1) - 3(-3 - 1) + 1(-1 + 1) \Big]                                                                       \\
+		  & = \frac{16}{343}
+	\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+	\Rightarrow dV = |J| \, du \, dv \, dw = \frac{16}{343} \, du \, dv \, dw
+\end{equation*}
+
+\begin{equation*}
+	\begin{aligned}
+		F & = \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} 901.17 \left( \frac{u+3v+w}{7} \right) \left( \frac{u-v+w}{7} \right)           \\
+		  & \qquad\qquad \times \left( \frac{u-v-3w}{7} \right) \frac{16}{343} \, du \, dv \, dw                                       \\
+		  & \text{Let } A = u - v + w                                                                                                  \\
+		F & = \frac{901.17 \times 16}{7^3 \times 343} \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} A(A+4v)(A-4w) \, du \, dv \, dw         \\
+		  & = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} \left( A^3 + 4(v-w)A^2 - 16vwA \right) \, du \, dv \, dw               \\
+		  & = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \left[ \frac{A^4}{4} + \frac{4(v-w)A^3}{3} - 8vwA^2 \right]_{u=0}^{u=3} \, dv \, dw \\
+		  & = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \Big( 9v^3 + (21w - 22.5)v^2                                                        \\
+		  & \qquad\qquad - (21w^2 + 27w - 9)v - (9w^3 + 22.5w^2 + 9w - 20.25) \Big) \, dv \, dw                                        \\
+		  & = 0.122557 \int_{-1}^{4} \left( -63w^3 - 525w^2 + 983.5w + 1585.5 \right) \, dw                                            \\
+		  & = 0.122557 \left[ \frac{-63w^4}{4} - \frac{525w^3}{3} + \frac{983.5w^2}{2} + 1585.5w \right]_{-1}^{4}                      \\
+		  & = 0.122557 (-87.5)                                                                                                         \\
+		  & \approx \boxed{-10.7237}
+	\end{aligned}
+\end{equation*}
+
+\subsection{Matlab Implementation}
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{figures/result04.png}
+	\end{center}
+	\caption{Student 04 - Matlab Screenshot}
+	\label{stu4_ques4}
+\end{figure}
