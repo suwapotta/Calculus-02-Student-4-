@@ -9,13 +9,12 @@ Compute the \textbf{total musculoskeletal force output} over the region:
 $0 \le u \le 3$, $-1 \le v \le 6$, $-1 \le w \le 4$, using the \textbf{Jacobian transform}.
 
 \subsection{Detailed Solution}
-\textit{ Sol. }
+\textit{ Sol. }Using \textbf{Jacobian transformation}:
 \begin{equation*}
 	\begin{aligned}
-		J & = \frac{\partial(x,y,z)}{\partial(u,v,w)} = \begin{vmatrix} 1/7 & 3/7 & 1/7 \\ 1/7 & -1/7 & 1/7 \\ 1/7 & -1/7 & -3/7 \end{vmatrix} \\
-		  & = \left(\frac{1}{7}\right)^3 \begin{vmatrix} 1 & 3 & 1 \\ 1 & -1 & 1 \\ 1 & -1 & -3 \end{vmatrix}                                  \\
-		  & = \frac{1}{343} \Big[ 1((-1)(-3) - (1)(-1)) - 3((1)(-3) - (1)(1)) + 1((1)(-1) - (-1)(1)) \Big]                                     \\
-		  & = \frac{1}{343} \Big[ 1(3 + 1) - 3(-3 - 1) + 1(-1 + 1) \Big]                                                                       \\
+		J & = \frac{\partial(x,y,z)}{\partial(u,v,w)} = \det \begin{bmatrix} 1/7 & 3/7 & 1/7 \\ 1/7 & -1/7 & 1/7 \\ 1/7 & -1/7 & -3/7 \end{bmatrix} = \left(\frac{1}{7}\right)^3 \cdot \det \begin{bmatrix} 1 & 3 & 1 \\ 1 & -1 & 1 \\ 1 & -1 & -3 \end{bmatrix} \\
+		  & = \frac{1}{343} \Big[ 1((-1)(-3) - (1)(-1)) - 3((1)(-3) - (1)(1)) + 1((1)(-1) - (-1)(1)) \Big]                                                                                                                                                       \\
+		  & = \frac{1}{343} \Big[ 1(3 + 1) - 3(-3 - 1) + 1(-1 + 1) \Big]                                                                                                                                                                                         \\
 		  & = \frac{16}{343}
 	\end{aligned}
 \end{equation*}
@@ -26,18 +25,18 @@ $0 \le u \le 3$, $-1 \le v \le 6$, $-1 \le w \le 4$, using the \textbf{Jacobian 
 
 \begin{equation*}
 	\begin{aligned}
-		F & = \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} 901.17 \left( \frac{u+3v+w}{7} \right) \left( \frac{u-v+w}{7} \right)           \\
-		  & \qquad\qquad \times \left( \frac{u-v-3w}{7} \right) \frac{16}{343} \, du \, dv \, dw                                       \\
-		  & \text{Let } A = u - v + w                                                                                                  \\
-		F & = \frac{901.17 \times 16}{7^3 \times 343} \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} A(A+4v)(A-4w) \, du \, dv \, dw         \\
-		  & = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} \left( A^3 + 4(v-w)A^2 - 16vwA \right) \, du \, dv \, dw               \\
-		  & = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \left[ \frac{A^4}{4} + \frac{4(v-w)A^3}{3} - 8vwA^2 \right]_{u=0}^{u=3} \, dv \, dw \\
-		  & = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \Big( 9v^3 + (21w - 22.5)v^2                                                        \\
-		  & \qquad\qquad - (21w^2 + 27w - 9)v - (9w^3 + 22.5w^2 + 9w - 20.25) \Big) \, dv \, dw                                        \\
-		  & = 0.122557 \int_{-1}^{4} \left( -63w^3 - 525w^2 + 983.5w + 1585.5 \right) \, dw                                            \\
-		  & = 0.122557 \left[ \frac{-63w^4}{4} - \frac{525w^3}{3} + \frac{983.5w^2}{2} + 1585.5w \right]_{-1}^{4}                      \\
-		  & = 0.122557 (-87.5)                                                                                                         \\
-		  & \approx \boxed{-10.7237}
+		F                                             & = \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} 901.17 \left( \frac{u+3v+w}{7} \right) \left( \frac{u-v+w}{7} \right)   \\
+		                                              & \qquad\qquad \cdot \left( \frac{u-v-3w}{7} \right) \frac{16}{343} \, du \, dv \, dw                                \\
+		\text{Let } A = u - v + w :                                                                                                                                        \\
+		F                                             & = \frac{901.17 \cdot 16}{7^3 \cdot 343} \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} A(A+4v)(A-4w) \, du \, dv \, dw   \\
+		\frac{7^3 \cdot 343}{901.17 \cdot 16} \cdot F & =  \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} \left( A^3 + 4(v-w)A^2 - 16vwA \right) \, du \, dv \, dw               \\
+		                                              & =  \int_{-1}^{4} \int_{-1}^{6} \left[ \frac{A^4}{4} + \frac{4(v-w)A^3}{3} - 8vwA^2 \right]_{u=0}^{u=3} \, dv \, dw \\
+		                                              & =  \int_{-1}^{4} \int_{-1}^{6} \Big( 9v^3 + (21w - 22.5)v^2                                                        \\
+		                                              & \qquad\qquad - (21w^2 + 27w - 9)v - (9w^3 + 22.5w^2 + 9w - 20.25) \Big) \, dv \, dw                                \\
+		                                              & =  \int_{-1}^{4} \left( -63w^3 - 525w^2 + 983.5w + 1585.5 \right) \, dw                                            \\
+		                                              & =  \left[ \frac{-63w^4}{4} - \frac{525w^3}{3} + \frac{983.5w^2}{2} + 1585.5w \right]_{-1}^{4}                      \\
+		                                              & =  -87.5                                                                                                           \\
+		\Rightarrow F                                 & = (-87.5) \cdot \left( \frac{901.17 \cdot 16}{7^3 \cdot 343} \right) \approx \boxed{-10.7237}
 	\end{aligned}
 \end{equation*}
 

@@ -10,11 +10,11 @@ Compute the total tendon stress in the segment using \textbf{cylindrical coordin
 \begin{equation*}
 	\begin{aligned}
 		P(r, \theta, z) & = 354.62r^2                                                                                                              \\
-		dV              & = r \, dr \, d\theta \, dz                                                                                               \\
-		S               & = \int_{0}^{9.5} \int_{0}^{2\pi} \int_{0}^{5.5} (354.62r^2)(r) \, dr \, d\theta \, dz                                    \\
+		\Rightarrow dV  & = r \, dr \, d\theta \, dz                                                                                               \\
+		\Rightarrow S   & = \int_{0}^{9.5} \int_{0}^{2\pi} \int_{0}^{5.5} (354.62r^2)(r) \, dr \, d\theta \, dz                                    \\
 		                & = 354.62 \left( \int_{0}^{5.5} r^3 \, dr \right) \left( \int_{0}^{2\pi} d\theta \right) \left( \int_{0}^{9.5} dz \right) \\
 		                & = 354.62 \left[ \frac{r^4}{4} \right]_{0}^{5.5} \left[ \theta \right]_{0}^{2\pi} \left[ z \right]_{0}^{9.5}              \\
-		                & = 354.62 \left( 228.765625 \right) \left( 2\pi \right) \left( 9.5 \right)                                                \\
+		                & = 354.62 \left( \frac{14641}{64} \right) \left( 2\pi \right) \left( 9.5 \right)                                          \\
 		                & = 1,540,798.1171875\pi                                                                                                   \\
 		                & \approx \boxed{4,842,364.3742}
 	\end{aligned}
