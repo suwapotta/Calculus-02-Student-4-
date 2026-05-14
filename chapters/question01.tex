@@ -1,34 +1,69 @@
-\section{Muscle Force Density in a 3D Musculoskeletal Region}
-
-\subsection{Problem Statement}
+\subsubsection*{Problem Statement Question 1}
 A biomechanics researcher analyzes a 3D musculoskeletal region where the
 \textbf{muscle force density} is given by:
-$$g(x,y,z) = 652.75x^{4}y^{8}z^{7}$$
+\[ g(x,y,z) = 652.75x^{4}y^{8}z^{7} \]
 over the region bounded by: $0 \le x \le 5$, $0 \le y \le 6$, $0 \le z \le 3$.
 Compute the total muscle force distributed in the region.
 
-\subsection{Detailed Solution}
-\textit{ Sol. }
+\subsubsection*{Solution}
+The total muscle force $F$ is defined as the triple integral of the density function $g(x, y, z)$ over the rectangular region $V$:
+\[ F = \iiint_V g(x, y, z) \, dV \]
 
-\begin{equation*}
-	\begin{aligned}
-		F & = \iiint_V g(x,y,z) \, dV                                                                                                  \\
-		  & = \int_{0}^{3} \int_{0}^{6} \int_{0}^{5} 652.75x^{4}y^{8}z^{7} \, dx \, dy \, dz                                           \\
-		  & = 652.75 \left( \int_{0}^{5} x^4 \, dx \right) \left( \int_{0}^{6} y^8 \, dy \right) \left( \int_{0}^{3} z^7 \, dz \right) \\
-		  & = 652.75 \left[ \frac{x^5}{5} \right]_{0}^{5} \left[ \frac{y^9}{9} \right]_{0}^{6} \left[ \frac{z^8}{8} \right]_{0}^{3}    \\
-		  & = 652.75 \left( 625 \right) \left( 1,119,744 \right) \left( 820.125 \right)                                                \\
-		  & \approx \boxed{374,649,962,215,039.5000} \label{eq:stu4q1}
-	\end{aligned}
-\end{equation*}
+Given the bounds of the region, the limits of integration are:
+\[ 0 \le x \le 5, \quad 0 \le y \le 6, \quad 0 \le z \le 3 \]
 
-\subsection{Matlab Implementation}
+Applying the iterated integration process step-by-step:
+\[ F = \int_{0}^{3} \int_{0}^{6} \int_{0}^{5} 652.75x^{4}y^{8}z^{7} \, dx \, dy \, dz \]
+
+\vspace{1cm}
+\noindent\textbf{Step 1: Integrate with respect to $x$.}
+
+\[ \int_{0}^{5} 652.75x^{4}y^{8}z^{7} \, dx = 652.75y^{8}z^{7} \left[ \frac{x^5}{5} \right]_{0}^{5} \]
+\[ = 652.75y^{8}z^{7} \left( \frac{3125}{5} \right) = 652.75y^{8}z^{7} (625) = 407968.75y^{8}z^{7} \]
+\[ \Rightarrow F = \int_{0}^{3} \int_{0}^{6} 407968.75y^{8}z^{7} \, dy \, dz \]
+
+\vspace{1cm}
+\noindent\textbf{Step 2: Integrate with respect to $y$.}
+
+Next, we integrate the resulting expression with respect to $y$:
+\[ \int_{0}^{6} 407968.75y^{8}z^{7} \, dy = 407968.75z^{7} \left[ \frac{y^9}{9} \right]_{0}^{6} \]
+Substituting the bounds gives:
+\[ = 407968.75z^{7} \left( \frac{10077696}{9} \right) \]
+\[ = 407968.75z^{7} (1119744) = 456820500000z^{7} \]
+The integral expression simplifies to:
+\[ F = \int_{0}^{3} 456820500000z^{7} \, dz \]
+
+\vspace{1cm}
+\noindent\textbf{Step 3: Integrate with respect to $z$.}
+
+Finally, we evaluate the outermost integral with respect to $z$:
+\[ \int_{0}^{3} 456820500000z^{7} \, dz = 456820500000 \left[ \frac{z^8}{8} \right]_{0}^{3} \]
+\[ = 456820500000 \left( \frac{6561}{8} \right) = 456820500000 (820.125) \]
+
+\vspace{1cm}
+\noindent\textbf{Step 4: Simplify the result.}
+
+Performing the final arithmetic calculation:
+\[ F \approx \boxed{374,649,962,215,039.5000} \]
+
+Thus, the total muscle force distributed in the region is approximately:
+\[ \mathbf{374,649,962,215,039.5000} \]
+
+\subsubsection*{MATLAB Verification \& Conclusion}
+\textbf{MATLAB Code:}
+\begin{mdframed}[backgroundcolor=gray!10]
+	\inputminted{matlab}{codes/q1s4.m}
+\end{mdframed}
+
+\vspace{1cm}
+\noindent\textbf{MATLAB Screenshot:}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.95\textwidth]{figures/stu4q1.png}
+		\includegraphics[width=0.8\textwidth]{figures/stu4q1.png}
 	\end{center}
-	\caption{Student 04 - Matlab Screenshot}
-	\label{fig:stu4q1}
 \end{figure}
 
-\subsection{Conclusion}
-The manual calculation for the total muscle force (Equation \ref{eq:stu4q1}) gives the \textbf{same} result as the MATLAB script (Figure \ref{fig:stu4q1}).
+\vspace{1cm}
+\noindent\textbf{Conclusion:}
+
+The manual calculation for the total muscle force gives the \textbf{same} result as the MATLAB script.

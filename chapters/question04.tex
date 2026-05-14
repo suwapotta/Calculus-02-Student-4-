@@ -1,55 +1,70 @@
-\section{Musculoskeletal Force Output}
-
-\subsection{Problem Statement}
+\subsubsection*{Problem Statement Question 4}
 In a multivariable musculoskeletal model, the \textbf{force output density function} for a limb system is:
-$$P(x, y, z) = 901.17xyz$$
+\[ P(x, y, z) = 901.17xyz \]
 where $x, y, z$ represent normalized inputs for muscle contraction, joint pressure, and bone displacement. A transformation to new coordinates is defined by:
-$$x=\frac{u+3v+w}{7}, \quad y=\frac{u-v+w}{7}, \quad z=\frac{u-v-3w}{7}$$
+\[ x=\frac{u+3v+w}{7}, \quad y=\frac{u-v+w}{7}, \quad z=\frac{u-v-3w}{7} \]
 Compute the \textbf{total musculoskeletal force output} over the region:
 $0 \le u \le 3$, $-1 \le v \le 6$, $-1 \le w \le 4$, using the \textbf{Jacobian transform}.
 
-\subsection{Detailed Solution}
-\textit{ Sol. }Using \textbf{Jacobian transformation}:
-\begin{equation*}
-	\begin{aligned}
-		J & = \frac{\partial(x,y,z)}{\partial(u,v,w)} = \det \begin{bmatrix} 1/7 & 3/7 & 1/7 \\ 1/7 & -1/7 & 1/7 \\ 1/7 & -1/7 & -3/7 \end{bmatrix} = \left(\frac{1}{7}\right)^3 \cdot \det \begin{bmatrix} 1 & 3 & 1 \\ 1 & -1 & 1 \\ 1 & -1 & -3 \end{bmatrix} \\
-		  & = \frac{1}{343} \Big[ 1((-1)(-3) - (1)(-1)) - 3((1)(-3) - (1)(1)) + 1((1)(-1) - (-1)(1)) \Big]                                                                                                                                                       \\
-		  & = \frac{1}{343} \Big[ 1(3 + 1) - 3(-3 - 1) + 1(-1 + 1) \Big]                                                                                                                                                                                         \\
-		  & = \frac{16}{343}
-	\end{aligned}
-\end{equation*}
+\subsubsection*{Solution}
+The total musculoskeletal force output $F$ is calculated by evaluating the triple integral of the density function over the given region, translating to the $uvw$-space:
+\[ F = \iiint_{G} P(x(u,v,w), y(u,v,w), z(u,v,w)) |J| \, du \, dv \, dw \]
 
-\begin{equation*}
-	\Rightarrow dV = |J| \, du \, dv \, dw = \frac{16}{343} \, du \, dv \, dw
-\end{equation*}
+First, we compute the Jacobian determinant $J$ of the transformation:
+\[ J = \frac{\partial(x,y,z)}{\partial(u,v,w)} = \left(\frac{1}{7}\right)^3 \begin{vmatrix} 1 & 3 & 1 \\ 1 & -1 & 1 \\ 1 & -1 & -3 \end{vmatrix} \]
+\[ = \frac{1}{343} \Big[ 1((-1)(-3) - (1)(-1)) \]
+		\[ \qquad - 3((1)(-3) - (1)(1)) + 1((1)(-1) - (-1)(1)) \Big] \]
+\[ = \frac{1}{343} \Big[ 1(4) - 3(-4) + 1(0) \Big] = \frac{16}{343} \approx 0.046647 \]
 
-\begin{equation*}
-	\begin{aligned}
-		F                                             & = \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} 901.17 \left( \frac{u+3v+w}{7} \right) \left( \frac{u-v+w}{7} \right)   \\
-		                                              & \qquad\qquad \cdot \left( \frac{u-v-3w}{7} \right) \frac{16}{343} \, du \, dv \, dw                                \\
-		\text{Let } A = u - v + w :                                                                                                                                        \\
-		F                                             & = \frac{901.17 \cdot 16}{7^3 \cdot 343} \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} A(A+4v)(A-4w) \, du \, dv \, dw   \\
-		\frac{7^3 \cdot 343}{901.17 \cdot 16} \cdot F & =  \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} \left( A^3 + 4(v-w)A^2 - 16vwA \right) \, du \, dv \, dw               \\
-		                                              & =  \int_{-1}^{4} \int_{-1}^{6} \left[ \frac{A^4}{4} + \frac{4(v-w)A^3}{3} - 8vwA^2 \right]_{u=0}^{u=3} \, dv \, dw \\
-		                                              & =  \int_{-1}^{4} \int_{-1}^{6} \Big( 9v^3 + (21w - 22.5)v^2                                                        \\
-		                                              & \qquad\qquad - (21w^2 + 27w - 9)v - (9w^3 + 22.5w^2 + 9w - 20.25) \Big) \, dv \, dw                                \\
-		                                              & =  \int_{-1}^{4} \left( -63w^3 - 525w^2 + 983.5w + 1585.5 \right) \, dw                                            \\
-		                                              & =  \left[ \frac{-63w^4}{4} - \frac{525w^3}{3} + \frac{983.5w^2}{2} + 1585.5w \right]_{-1}^{4}                      \\
-		                                              & =  \left[ \frac{-63w^4}{4} - 175w^3 + 491.75w^2 + 1585.5w \right]_{-1}^{4}                                         \\
-		                                              & =  (-1022) - (-934.5)                                                                                              \\
-		                                              & =  -87.5                                                                                                           \\
-		\Rightarrow F                                 & = (-87.5) \cdot \left( \frac{901.17 \cdot 16}{7^3 \cdot 343} \right) \approx \boxed{-10.7237} \label{eq:stu4q4}
-	\end{aligned}
-\end{equation*}
+The absolute value of the Jacobian is $|J| = \frac{16}{343}$. Let $A = u - v + w$. Substituting the transformation into the integral yields:
+\[ F = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} \left( A^3 + 4(v-w)A^2 - 16vwA \right) \, du \, dv \, dw \]
 
-\subsection{Matlab Implementation}
+Applying the iterated integration process step-by-step:
+
+\vspace{1cm}
+\noindent\textbf{Step 1: Integrate with respect to $u$.}
+
+\[ \int_{0}^{3} \left( A^3 + 4(v-w)A^2 - 16vwA \right) \, du = \left[ \frac{A^4}{4} + \frac{4(v-w)A^3}{3} - 8vwA^2 \right]_{u=0}^{u=3} \]
+Expanding the bounds results in the following polynomial for $v$ and $w$:
+\[ = 9v^3 + (21w - 22.5)v^2 - (21w^2 + 27w - 9)v - (9w^3 + 22.5w^2 + 9w - 20.25) \]
+\[ \Rightarrow F = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \Big( 9v^3 + (21w - 22.5)v^2 \]
+\[ \qquad - (21w^2 + 27w - 9)v - (9w^3 + 22.5w^2 + 9w - 20.25) \Big) \, dv \, dw \]
+
+\vspace{1cm}
+\noindent\textbf{Step 2: Integrate with respect to $v$.}
+
+Evaluating the polynomial with respect to $v$ from $-1$ to $6$:
+\[ \int_{-1}^{6} \Big( ... \Big) \, dv = -63w^3 - 525w^2 + 983.5w + 1585.5 \]
+The integral expression simplifies to:
+\[ F = 0.122557 \int_{-1}^{4} \left( -63w^3 - 525w^2 + 983.5w + 1585.5 \right) \, dw \]
+
+\vspace{1cm}
+\noindent\textbf{Step 3: Integrate with respect to $w$.}
+
+\[ \int_{-1}^{4} \left( -63w^3 - 525w^2 + 983.5w + 1585.5 \right) \, dw \]
+\[ = \left[ \frac{-63w^4}{4} - 175w^3 + 491.75w^2 + 1585.5w \right]_{-1}^{4} \]
+\[ = (-1022) - (-934.5) = -87.5 \]
+
+\vspace{1cm}
+\noindent\textbf{Step 4: Simplify the result.}
+
+\[ F = 0.122557 (-87.5) \approx \boxed{-10.7237} \]
+
+\subsubsection*{MATLAB Verification \& Conclusion}
+\textbf{MATLAB Code:}
+\begin{mdframed}[backgroundcolor=gray!10]
+	\inputminted{matlab}{codes/q4s4.m}
+\end{mdframed}
+
+\vspace{1cm}
+\noindent\textbf{MATLAB Screenshot:}
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.95\textwidth]{figures/stu4q4.png}
 	\end{center}
-	\caption{Student 04 - Matlab Screenshot}
-	\label{fig:stu4q4}
 \end{figure}
 
-\subsection{Conclusion}
-After applying the Jacobian transformation, calculation for the force output (Equation \ref{eq:stu4q4}) \textbf{matches} the MATLAB output (Figure \ref{fig:stu4q4}).
+\vspace{1cm}
+\noindent\textbf{Conclusion:}
+
+After applying the Jacobian transformation, the calculation for the force output gives the \textbf{same} result as the MATLAB script.
