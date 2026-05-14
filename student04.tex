@@ -9,14 +9,14 @@
 \AtBeginDocument{\counterwithin{lstlisting}{section}}
 
 %%% Custom commands
-\newcommand{\inputfigure}[3][0.95]{
-\begin{figure}[htbp]%
-  \begin{center}%
-    \includegraphics[width=#1\textwidth]{figures/#2}%
-  \end{center}%
-  \caption{#3}%
-\end{figure}%
-}
+% \newcommand{\inputfigure}[3][0.95]{
+% \begin{figure}[H]%
+%   \begin{center}%
+%     \includegraphics[width=#1\textwidth]{figures/#2}%
+%   \end{center}%
+%   \caption{#3}%
+% \end{figure}%
+% }
 
 %%% Rename sections
 % \AtBeginDocument{\renewcommand*{\contentsname}{Contents}}
@@ -38,6 +38,7 @@
 
 \raggedbottom
 
+\input{chapters/info.tex}
 \input{chapters/question01.tex}
 \input{chapters/question02.tex}
 \input{chapters/question03.tex}

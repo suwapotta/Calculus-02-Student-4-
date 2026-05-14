@@ -35,16 +35,21 @@ $0 \le u \le 3$, $-1 \le v \le 6$, $-1 \le w \le 4$, using the \textbf{Jacobian 
 		                                              & \qquad\qquad - (21w^2 + 27w - 9)v - (9w^3 + 22.5w^2 + 9w - 20.25) \Big) \, dv \, dw                                \\
 		                                              & =  \int_{-1}^{4} \left( -63w^3 - 525w^2 + 983.5w + 1585.5 \right) \, dw                                            \\
 		                                              & =  \left[ \frac{-63w^4}{4} - \frac{525w^3}{3} + \frac{983.5w^2}{2} + 1585.5w \right]_{-1}^{4}                      \\
+		                                              & =  \left[ \frac{-63w^4}{4} - 175w^3 + 491.75w^2 + 1585.5w \right]_{-1}^{4}                                         \\
+		                                              & =  (-1022) - (-934.5)                                                                                              \\
 		                                              & =  -87.5                                                                                                           \\
-		\Rightarrow F                                 & = (-87.5) \cdot \left( \frac{901.17 \cdot 16}{7^3 \cdot 343} \right) \approx \boxed{-10.7237}
+		\Rightarrow F                                 & = (-87.5) \cdot \left( \frac{901.17 \cdot 16}{7^3 \cdot 343} \right) \approx \boxed{-10.7237} \label{eq:stu4q4}
 	\end{aligned}
 \end{equation*}
 
 \subsection{Matlab Implementation}
-\begin{figure}[htbp]
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.95\textwidth]{figures/result04.png}
+		\includegraphics[width=0.95\textwidth]{figures/stu4q4.png}
 	\end{center}
 	\caption{Student 04 - Matlab Screenshot}
-	\label{stu4_ques4}
+	\label{fig:stu4q4}
 \end{figure}
+
+\subsection{Conclusion}
+After applying the Jacobian transformation, calculation for the force output (Equation \ref{eq:stu4q4}) \textbf{matches} the MATLAB output (Figure \ref{fig:stu4q4}).

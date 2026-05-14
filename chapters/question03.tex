@@ -9,22 +9,28 @@ Compute the total tendon stress in the segment using \textbf{cylindrical coordin
 \textit{ Sol. }
 \begin{equation*}
 	\begin{aligned}
-		P(r, \theta, z) & = 354.62r^2                                                                                                              \\
-		\Rightarrow dV  & = r \, dr \, d\theta \, dz                                                                                               \\
-		\Rightarrow S   & = \int_{0}^{9.5} \int_{0}^{2\pi} \int_{0}^{5.5} (354.62r^2)(r) \, dr \, d\theta \, dz                                    \\
-		                & = 354.62 \left( \int_{0}^{5.5} r^3 \, dr \right) \left( \int_{0}^{2\pi} d\theta \right) \left( \int_{0}^{9.5} dz \right) \\
-		                & = 354.62 \left[ \frac{r^4}{4} \right]_{0}^{5.5} \left[ \theta \right]_{0}^{2\pi} \left[ z \right]_{0}^{9.5}              \\
-		                & = 354.62 \left( \frac{14641}{64} \right) \left( 2\pi \right) \left( 9.5 \right)                                          \\
-		                & = 1,540,798.1171875\pi                                                                                                   \\
-		                & \approx \boxed{4,842,364.3742}
+		              & \begin{cases}
+			                P(r, \theta, z) & = 354.62(x^{2} + y^{2})  = 354.62r^2 \\
+			                dV              & = r \, dr \, d\theta \, dz
+		                \end{cases}                                                                   \\[1em]
+		\Rightarrow S & = \int_{0}^{9.5} \int_{0}^{2\pi} \int_{0}^{5.5} (354.62r^2)(r) \, dr \, d\theta \, dz                                    \\
+		              & = 354.62 \left( \int_{0}^{5.5} r^3 \, dr \right) \left( \int_{0}^{2\pi} d\theta \right) \left( \int_{0}^{9.5} dz \right) \\
+		              & = 354.62 \left[ \frac{r^4}{4} \right]_{0}^{5.5} \left[ \theta \right]_{0}^{2\pi} \left[ z \right]_{0}^{9.5}              \\
+		              & = 354.62 \left( \frac{14641}{64} \right) \left( 2\pi \right) \left( 9.5 \right)                                          \\
+		              & = 1,540,798.1171875\pi                                                                                                   \\
+		              & \approx \boxed{4,842,364.3742}
 	\end{aligned}
+	\label{eq:stu4q3}
 \end{equation*}
 
 \subsection{Matlab Implementation}
-\begin{figure}[htbp]
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.95\textwidth]{figures/result03.png}
+		\includegraphics[width=0.95\textwidth]{figures/stu4q3.png}
 	\end{center}
 	\caption{Student 04 - Matlab Screenshot}
-	\label{stu4_ques3}
+	\label{fig:stu4q3}
 \end{figure}
+
+\subsection{Conclusion}
+The total tendon stress calculated by using cylindrical coordinates (Equation \ref{eq:stu4q3}) \textbf{matches} the MATLAB result (Figure \ref{fig:stu4q3}).

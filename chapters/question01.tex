@@ -17,15 +17,18 @@ Compute the total muscle force distributed in the region.
 		  & = 652.75 \left( \int_{0}^{5} x^4 \, dx \right) \left( \int_{0}^{6} y^8 \, dy \right) \left( \int_{0}^{3} z^7 \, dz \right) \\
 		  & = 652.75 \left[ \frac{x^5}{5} \right]_{0}^{5} \left[ \frac{y^9}{9} \right]_{0}^{6} \left[ \frac{z^8}{8} \right]_{0}^{3}    \\
 		  & = 652.75 \left( 625 \right) \left( 1,119,744 \right) \left( 820.125 \right)                                                \\
-		  & \approx \boxed{374,649,962,215,039.5000}
+		  & \approx \boxed{374,649,962,215,039.5000} \label{eq:stu4q1}
 	\end{aligned}
 \end{equation*}
 
 \subsection{Matlab Implementation}
-\begin{figure}[htbp]
+\begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.95\textwidth]{figures/result01.png}
+		\includegraphics[width=0.95\textwidth]{figures/stu4q1.png}
 	\end{center}
 	\caption{Student 04 - Matlab Screenshot}
-	\label{stu4_ques1}
+	\label{fig:stu4q1}
 \end{figure}
+
+\subsection{Conclusion}
+The manual calculation for the total muscle force (Equation \ref{eq:stu4q1}) gives the \textbf{same} result as the MATLAB script (Figure \ref{fig:stu4q1}).
