@@ -11,7 +11,11 @@ The total musculoskeletal force output $F$ is calculated by evaluating the tripl
 \[ F = \iiint_{G} P(x(u,v,w), y(u,v,w), z(u,v,w)) |J| \, du \, dv \, dw \]
 
 First, we compute the Jacobian determinant $J$ of the transformation:
-\[ J = \frac{\partial(x,y,z)}{\partial(u,v,w)} = \left(\frac{1}{7}\right)^3 \begin{vmatrix} 1 & 3 & 1 \\ 1 & -1 & 1 \\ 1 & -1 & -3 \end{vmatrix} \]
+\[ J = \frac{\partial(x,y,z)}{\partial(u,v,w)} = \begin{vmatrix}
+		\displaystyle\frac{\partial x}{\partial u} & \displaystyle\frac{\partial y}{\partial u} & \displaystyle\frac{\partial z}{\partial u} \\[0.25cm]
+		\displaystyle\frac{\partial x}{\partial u} & \displaystyle\frac{\partial y}{\partial u} & \displaystyle\frac{\partial z}{\partial u} \\[0.25cm]
+		\displaystyle\frac{\partial x}{\partial u} & \displaystyle\frac{\partial y}{\partial u} & \displaystyle\frac{\partial z}{\partial u}
+	\end{vmatrix} = \left(\frac{1}{7}\right)^3 \begin{vmatrix} 1 & 3 & 1 \\ 1 & -1 & 1 \\ 1 & -1 & -3 \end{vmatrix} \]
 \[ = \frac{1}{343} \Big[ 1((-1)(-3) - (1)(-1)) \]
 		\[ \qquad - 3((1)(-3) - (1)(1)) + 1((1)(-1) - (-1)(1)) \Big] \]
 \[ = \frac{1}{343} \Big[ 1(4) - 3(-4) + 1(0) \Big] = \frac{16}{343} \approx 0.046647 \]
