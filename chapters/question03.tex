@@ -1,73 +1,62 @@
-\subsubsection*{Problem Statement Question 4}
-In a multivariable musculoskeletal model, the \textbf{force output density function} for a limb system is:
-\[ P(x, y, z) = 901.17xyz \]
-where $x, y, z$ represent normalized inputs for muscle contraction, joint pressure, and bone displacement. A transformation to new coordinates is defined by:
-\[ x=\frac{u+3v+w}{7}, \quad y=\frac{u-v+w}{7}, \quad z=\frac{u-v-3w}{7} \]
-Compute the \textbf{total musculoskeletal force output} over the region:
-$0 \le u \le 3$, $-1 \le v \le 6$, $-1 \le w \le 4$, using the \textbf{Jacobian transform}.
+\subsubsection*{Problem Statement Question 3}
+A cylindrical limb segment in a musculoskeletal model has a radius of \textbf{5.5 units} and a height of \textbf{9.5 units}. The \textbf{tendon stress density} at a point $(x,y,z)$ within the segment is defined by:
+\[ P(x, y, z) = 354.62x^2 + 354.62y^2 \]
+Compute the total tendon stress in the segment using \textbf{cylindrical coordinates}.
 
 \subsubsection*{Solution}
-The total musculoskeletal force output $F$ is calculated by evaluating the triple integral of the density function over the given region, translating to the $uvw$-space:
-\[ F = \iiint_{G} P(x(u,v,w), y(u,v,w), z(u,v,w)) |J| \, du \, dv \, dw \]
+The total tendon stress $S$ is defined as the triple integral of the density function $P(x, y, z)$ over the cylindrical region:
+\[ S = \iiint_V P(x, y, z) \, dV \]
 
-First, we compute the Jacobian determinant $J$ of the transformation:
-\[ J = \frac{\partial(x,y,z)}{\partial(u,v,w)} = \begin{vmatrix}
-		\displaystyle\frac{\partial x}{\partial u} & \displaystyle\frac{\partial y}{\partial u} & \displaystyle\frac{\partial z}{\partial u} \\[0.25cm]
-		\displaystyle\frac{\partial x}{\partial u} & \displaystyle\frac{\partial y}{\partial u} & \displaystyle\frac{\partial z}{\partial u} \\[0.25cm]
-		\displaystyle\frac{\partial x}{\partial u} & \displaystyle\frac{\partial y}{\partial u} & \displaystyle\frac{\partial z}{\partial u}
-	\end{vmatrix} = \left(\frac{1}{7}\right)^3 \begin{vmatrix} 1 & 3 & 1 \\ 1 & -1 & 1 \\ 1 & -1 & -3 \end{vmatrix} \]
-\[ = \frac{1}{343} \Big[ 1((-1)(-3) - (1)(-1)) \]
-		\[ \qquad - 3((1)(-3) - (1)(1)) + 1((1)(-1) - (-1)(1)) \Big] \]
-\[ = \frac{1}{343} \Big[ 1(4) - 3(-4) + 1(0) \Big] = \frac{16}{343} \approx 0.046647 \]
+Converting the density function into cylindrical coordinates ($x^2 + y^2 = r^2$):
+\[ P(r, \theta, z) = 354.62r^2 \]
 
-The absolute value of the Jacobian is $|J| = \frac{16}{343}$. Let $A = u - v + w$. Substituting the transformation into the integral yields:
-\[ F = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \int_{0}^{3} \left( A^3 + 4(v-w)A^2 - 16vwA \right) \, du \, dv \, dw \]
+The volume element in cylindrical coordinates is $dV = r \, dr \, d\theta \, dz$. The limits of integration for the cylinder are:
+\[ 0 \le r \le 5.5, \quad 0 \le \theta \le 2\pi, \quad 0 \le z \le 9.5 \]
 
 Applying the iterated integration process step-by-step:
+\[ S = \int_{0}^{9.5} \int_{0}^{2\pi} \int_{0}^{5.5} 354.62r^3 \, dr \, d\theta \, dz \]
 
 \vspace{1cm}
-\noindent\textbf{Step 1: Integrate with respect to $u$.}
+\noindent\textbf{Step 1: Integrate with respect to $r$.}
 
-\[ \int_{0}^{3} \left( A^3 + 4(v-w)A^2 - 16vwA \right) \, du = \left[ \frac{A^4}{4} + \frac{4(v-w)A^3}{3} - 8vwA^2 \right]_{u=0}^{u=3} \]
-Expanding the bounds results in the following polynomial for $v$ and $w$:
-\[ = 9v^3 + (21w - 22.5)v^2 - (21w^2 + 27w - 9)v - (9w^3 + 22.5w^2 + 9w - 20.25) \]
-\[ \Rightarrow F = 0.122557 \int_{-1}^{4} \int_{-1}^{6} \Big( 9v^3 + (21w - 22.5)v^2 \]
-\[ \qquad - (21w^2 + 27w - 9)v - (9w^3 + 22.5w^2 + 9w - 20.25) \Big) \, dv \, dw \]
+\[ \int_{0}^{5.5} 354.62r^3 \, dr = 354.62 \left[ \frac{r^4}{4} \right]_{0}^{5.5} \]
+\[ = 354.62 \left( \frac{14641}{64} \right) = 81124.8759 \]
+\[ \Rightarrow S = \int_{0}^{9.5} \int_{0}^{2\pi} 81124.8759 \, d\theta \, dz \]
 
 \vspace{1cm}
-\noindent\textbf{Step 2: Integrate with respect to $v$.}
+\noindent\textbf{Step 2: Integrate with respect to $\theta$.}
 
-Evaluating the polynomial with respect to $v$ from $-1$ to $6$:
-\[ \int_{-1}^{6} \Big( ... \Big) \, dv = -63w^3 - 525w^2 + 983.5w + 1585.5 \]
+\[ \int_{0}^{2\pi} 81124.8759 \, d\theta = 81124.8759 \Big[\theta\Big]_{0}^{2\pi} = 162249.7518\pi \]
 The integral expression simplifies to:
-\[ F = 0.122557 \int_{-1}^{4} \left( -63w^3 - 525w^2 + 983.5w + 1585.5 \right) \, dw \]
+\[ S = \int_{0}^{9.5} 162249.7518\pi \, dz \]
 
 \vspace{1cm}
-\noindent\textbf{Step 3: Integrate with respect to $w$.}
+\noindent\textbf{Step 3: Integrate with respect to $z$.}
 
-\[ \int_{-1}^{4} \left( -63w^3 - 525w^2 + 983.5w + 1585.5 \right) \, dw = \left[ \frac{-63w^4}{4} - 175w^3 + 491.75w^2 + 1585.5w \right]_{-1}^{4} \]
-\[ = (-1022) - (-934.5) = -87.5 \]
+\[ \int_{0}^{9.5} 162249.7518\pi \, dz = 162249.7518\pi [z]_{0}^{9.5} = 162249.7518\pi (9.5) \]
 
 \vspace{1cm}
 \noindent\textbf{Step 4: Simplify the result.}
 
-\[ F = 0.122557 (-87.5) \approx \boxed{-10.7237} \]
+\[ S = 1540798.1171\pi \approx \boxed{4,842,364.3742} \]
+
+Thus, the total tendon stress distributed in the segment is exactly $\mathbf{4,842,364.3742}$.
 
 \subsubsection*{MATLAB Verification \& Conclusion}
 \textbf{MATLAB Code:}
 \begin{mdframed}[backgroundcolor=gray!10]
-	\inputminted{matlab}{codes/q4s4.m}
+	\inputminted{matlab}{codes/q3s4.m}
 \end{mdframed}
 
 \vspace{1cm}
 \noindent\textbf{MATLAB Screenshot:}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.95\textwidth]{figures/stu4q4.png}
+		\includegraphics[width=0.95\textwidth]{figures/stu4q3.png}
 	\end{center}
 \end{figure}
 
 \vspace{1cm}
 \noindent\textbf{Conclusion:}
 
-After applying the Jacobian transformation, the calculation for the force output gives the \textbf{same} result as the MATLAB script.
+The total tendon stress calculated by using cylindrical coordinates gives the \textbf{same} result as the MATLAB script.
